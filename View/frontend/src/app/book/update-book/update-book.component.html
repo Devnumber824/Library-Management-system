@@ -1,0 +1,35 @@
+<form [formGroup]="UpdateBookForm">
+
+  <fieldset disabled>
+    <legend>Book Details</legend>
+    <div class="mb-3">
+      <label for="disabledTextInput" class="form-label">ID</label>
+      <input type="text" id="disabledTextInput" class="form-control" placeholder={{data.id}}>
+    </div>
+  </fieldset>
+
+  <div class="mb-3">
+    <label for="exampleInputPassword1" class="form-label">Book Name</label>
+    <input type="text" formControlName="bookname" class="form-control" id="exampleInputPassword1">
+    <div *ngIf="bookname && bookname.hasError('required') && bookname.touched " style="color:red" >Book Name is Mandatory.</div>
+        <div *ngIf="bookname && bookname.hasError('pattern')" style="color:red" >Please enter a valid Book Name.</div>
+  </div>
+
+  <div class="mb-3">
+      <label for="exampleInputPassword1" class="form-label">Book Author</label>
+      <input type="text" formControlName="bookauthor" class="form-control" id="exampleInputPassword1">
+      <div *ngIf="bookauthor && bookauthor.hasError('required') && bookauthor.touched " style="color:red" >Book Author is Mandatory.</div>
+      <div *ngIf="bookauthor && bookauthor.hasError('pattern')" style="color:red" >Please enter a valid Book Author.</div>
+    </div>
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Count</label>
+      <input type="number" formControlName="count" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div *ngIf="count && count.hasError('required') && count.touched " style="color:red" >Book Name is Mandatory.</div>
+      <div *ngIf="count && count.hasError('pattern')" style="color:red" >Please enter a valid Book Name.</div>
+    </div>
+    
+
+  <button type="submit" [disabled]="!UpdateBookForm.valid" class="btn btn-primary" (click)="Update()" >Add</button>
+  <button type="button" class="btn btn-danger" style="margin-left: 30px;" (click)="close()" >Close</button>
+</form>

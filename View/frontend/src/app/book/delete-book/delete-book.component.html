@@ -1,0 +1,17 @@
+<form [formGroup]="DeleteForm">
+
+    <div class="mb-3">
+      <label for="exampleInputEmail1" class="form-label">Book ID</label>
+      <input type="number" formControlName="id" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      <div *ngIf="id && id.hasError('required') && id.touched " style="color:red" >Book ID is Mandatory.</div>
+      <div *ngIf="id && id.hasError('pattern')" style="color:red" >Please enter a valid Book ID.</div>
+    </div>
+
+    <div class="mb-3">
+        <p><b>Disclaimer:-</b> Deleting the book will delete all the data associated with the book.</p>
+    </div>
+      
+  
+    <button type="submit" class="btn btn-primary" (click)="DeleteBook()" >Delete</button>
+    <button type="button" class="btn btn-danger" style="margin-left: 30px;" (click)="close()" >Close</button>
+  </form>

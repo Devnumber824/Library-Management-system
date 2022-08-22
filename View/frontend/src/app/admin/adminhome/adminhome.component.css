@@ -1,0 +1,78 @@
+table {
+    width: 100%;
+  }
+  
+  tr.example-detail-row {
+    height: 0;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):hover {
+    background: whitesmoke;
+  }
+  
+  tr.example-element-row:not(.example-expanded-row):active {
+    background: #efefef;
+  }
+  
+  .example-element-row td {
+    border-bottom-width: 0;
+  }
+  
+  .example-element-detail {
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .example-element-diagram {
+    min-width: 80px;
+    border: 2px solid black;
+    padding: 8px;
+    font-weight: lighter;
+    margin: 8px 0;
+    height: 104px;
+  }
+  
+  .example-element-symbol {
+    font-weight: bold;
+    font-size: 40px;
+    line-height: normal;
+  }
+  
+  .example-element-description {
+    padding: 16px;
+  }
+  
+  .example-element-description-attribution {
+    opacity: 0.5;
+  }
+  
+  .cb-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    flex-flow: row;
+  }
+
+  .divTable
+  {
+      display:  table;
+      width:auto;
+      background-color:#eee;
+      border:1px solid  #666666;
+      border-spacing:5px;/*cellspacing:poor IE support for  this*/
+     /* border-collapse:separate;*/
+  }
+
+  .divRow
+  {
+     display:table-row;
+     width:auto;
+  }
+
+  .divCell
+  {
+      float:left;/*fix for  buggy browsers*/
+      display:table-column;
+      width:200px;
+      background-color:#ccc;
+  }

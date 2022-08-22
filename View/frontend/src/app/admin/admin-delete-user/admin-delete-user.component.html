@@ -1,0 +1,13 @@
+<form [formGroup]="DeleteForm">
+    
+    <div class="mb-3">
+     <p> User <b>{{data.username}}</b> will be deleted are you sure? </p>
+    </div>
+    <div class="mb-3">
+     <P>*Disclaimer:- Deletting the user will delete all the related data to the user.</P>
+    </div>
+  
+    <button type="submit"  class="btn btn-primary" (click)="DeleteReq()">Delete</button>
+    <button type="button" class="btn btn-danger" style="margin-left: 30px;" (click)="close()" >Close</button>
+  </form>
+

@@ -1,0 +1,111 @@
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand">{{RetData.username}}</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active"  aria-current="page" (click)="AddUserClicked()"  >Add User</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" routerLink="/admin/books">Books</a>
+          </li>
+          
+         
+        </ul>
+      </div>
+      <a (click)="logout()">Logout</a>
+    </div>
+  </nav>
+
+<div class="container mt-3">
+ 
+        <h2><b>Search filters</b></h2>
+        <div class="container">
+          <div class="mt-3 mb-3">
+            <label for="search1" ><b>Search:</b></label>
+            <input type="text"  id="search1" [(ngModel)] = "SearchInputUsername" placeholder="Username for search"  (input)="justfortest()" style="margin-left:5px;">
+          </div>
+          <div class="mt-3 mb-3">
+            <label for="search2" ><b>Search with book id:</b></label>
+            <ng-multiselect-dropdown  
+            [placeholder]="'Select book ids'"
+            [settings]="dropdownSettings"
+            [data]="dropdownList"
+            [(ngModel)]="selectedItems"
+            (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)"
+          >
+          </ng-multiselect-dropdown>
+        </div>
+        <div>
+           <label ><b>Search by Penaty Range:</b></label>
+            <label for="search3" style="margin-left:1%;">Min Penalty:</label>
+            <input type="number"  id="search3" min="0" style="width: 50px;" [(ngModel)]="SearchInputMin" placeholder="min value here">
+            <label for="search4" style="margin-left:1%;" >Max Penalty:</label>
+            <input type="number"  id="search4" min="0" style="width: 50px;" [(ngModel)]="SearchInputMax" placeholder="max value here">
+      
+          </div>
+        </div>
+    
+</div>
+  
+
+  
+  <!-- Exapndible Material Heading -->
+  <div class="container" style="margin-top: 10px; ">
+    <div class="bg-light" style="height:30px ;">
+      <div style=" margin-left:2%; margin-top: 6px; display: inline-flex;"> Firstname</div>
+      <div style=" margin-left:17%; margin-top: 6px; display: inline-flex;"> Lastname</div>
+      <div style="margin-left:17%; margin-top: 6px; display: inline-flex;"> Username</div>
+      <div style="margin-left: 21%; margin-top: 6px; display: inline-flex;">Penalty</div>
+    </div>
+  </div>
+  
+  
+  <!-- Expandible Material for Admin -->
+  <div class="container">
+    <mat-spinner *ngIf="loading" style="margin-left:40%; margin-top:20%;"></mat-spinner>
+  </div>
+  
+  <div class="container" *ngIf="!loading">
+    <mat-accordion>
+      <div *ngFor="let user of Users">
+        <mat-expansion-panel class="mt-3" *ngIf=" (SearchInputUsername==''&& selectedItems.length==0 && (SearchInputMin<=0 && SearchInputMax<=0 )) || user.username==SearchInputUsername || Visibleuserforid(user) || VisibleuserMINMAX(user) ">
+          <mat-expansion-panel-header>
+            <div class="mt-3" style="width: 25%;  display: inline-flex;"> {{user.firstname}}</div>
+            <div class="mt-3" style="width: 25%;  display: inline-flex;"> {{user.lastname}}</div>
+            <div class="mt-3" style="width:30%; display: inline-flex;"> {{user.username}}</div>
+            <div class="mt-3" style="width: 20% ; display: inline-flex;">{{user.penalty}}</div>
+          </mat-expansion-panel-header>
+          <mat-panel-description>
+            <div class="cb-wrapper">
+              <div class="divTable">
+                <div class="headRow">
+                   <div class="divCell" >Book ID</div>
+                   <div  class="divCell">Penalty</div>
+                </div>
+                <div *ngFor="let book of user.bookids;  let l= count; let i=index;">
+                  
+               <div class="divRow">
+                     <div class="divCell">{{book}}</div>
+                   <div class="divCell">{{user.penalty/user.bookids.length}}</div>
+               </div>
+              </div>
+              </div>
+              <br>
+              <span>| Total Books Taken = {{user.bookids.length}}</span>
+              <span>| Joining Date = {{user.joiningdate}}</span>
+            </div>
+            <div> <button class="btn btn-primary btn-sm" style="margin:10px ;"  (click)="UpdateUserClicked(user)">Update</button></div>
+            <div> <button class="btn btn-danger btn-sm" style="margin:10px ;"  (click)="DeleteUserClicked(user)">Delete</button></div>
+          </mat-panel-description>
+        </mat-expansion-panel>
+      </div>
+    </mat-accordion>
+  </div>
+
+  

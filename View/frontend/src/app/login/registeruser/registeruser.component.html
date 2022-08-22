@@ -1,0 +1,46 @@
+<body>
+    <form [formGroup]="Addform" >
+  
+      <div  class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Username</label>
+        <input type="text" formControlName="username"  class="form-control" id="Username" aria-describedby="emailHelp">
+        <div *ngIf="username && username.hasError('required')&& username.touched " style="color:red" >Username is Mandatory.</div>
+        <div *ngIf="username && username.hasError('pattern')" style="color:red" >Please enter a valid Username.</div>
+      </div>
+      <div  class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Password</label>
+        <input type="password" formControlName="password"  class="form-control" id="Password" aria-describedby="emailHelp">
+        <div *ngIf="password && password.hasError('required') && password.touched " style="color:red" >Pasword is Mandatory.</div>
+        <div *ngIf="password && password.hasError('minlength')" style="color:red" >Password must contain 8 characters.</div>
+      </div>
+        
+        <div  class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Firstname</label>
+            <input type="text" formControlName="firstname"  class="form-control" id="Firstname" aria-describedby="emailHelp">
+            <div *ngIf="firstname && firstname.hasError('required')&& firstname.touched " style="color:red" >Firstname is Mandatory.</div>
+            <div *ngIf="firstname && firstname.hasError('pattern')" style="color:red" >Please enter a valid First Name.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Lastname</label>
+            <input type="text" formControlName="lastname" class="form-control" id="Lastname" aria-describedby="emailHelp">
+            <div *ngIf="lastname && lastname.hasError('required') && lastname.touched " style="color:red">Lastname is Mandatory.</div>
+            <div *ngIf="lastname && lastname.hasError('pattern') " style="color:red" >Please enter a valid Last Name.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Email</label>
+            <input type="email" formControlName="email" class="form-control" id="Email" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Contact Number</label>
+            <input type="text" formControlName="contactnumber" class="form-control" id="Contactnumber" aria-describedby="emailHelp">
+            <div *ngIf=" contactnumber && contactnumber.touched &&  contactnumber.hasError('required')" style="color:red" >Please Enter Contact Number</div>
+            <div *ngIf=" contactnumber && contactnumber.touched &&  contactnumber.hasError('pattern') || contactnumber && contactnumber.hasError('minlength') || contactnumber && contactnumber.hasError('maxlength') " style="color:red" >Please Enter a valid Contact Number</div>
+          </div>
+        
+          
+          <button type="submit" [disabled]="!Addform.valid" class="btn btn-primary" (click)="datasubmit()">Submit</button>
+          <button class="btn btn-danger" style="margin:20px ;" (click)="close()">close</button>
+    
+      </form>
+    </body>

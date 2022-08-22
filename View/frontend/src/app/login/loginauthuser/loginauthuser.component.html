@@ -1,0 +1,28 @@
+<div style="margin-left: 32%; align-self: center; margin-top: 8%;" class="mb-3">
+  <h1>User Login</h1>
+</div>
+
+<div style="margin-left: 31%; align-self: center; ">
+<div class="container">
+    <div class="card" style="width:60%; height:fit-content">
+  <form  [formGroup]="LoginForm">
+      <div class="mb-3  mt-3 container" style="width:100% ;"  >
+        <label for="exampleInputEmail1" class="form-label"> Username</label>
+        <input type="text" formControlName="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+      <div class="mb-3 container" style="width:100% ;">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" formControlName="password" class="form-control" id="exampleInputPassword1">
+      </div>
+      <div class="mb-3 container" style="width:100% ;">
+      <button type="submit"  [disabled]="!LoginForm.valid" class="btn btn-primary" (click)="Auth()">Login</button>
+      <button type="submit"  style="margin:10px;" class="btn btn-primary" (click)="AddUserClicked()">Register</button>
+      </div>
+      <div class="mb-3 container" style="width:100% ;">
+        <a [routerLink]="['/adminlogin']">Are you a Admin?</a>
+      </div>
+      
+    </form>
+  </div>
+  </div>
+</div>
